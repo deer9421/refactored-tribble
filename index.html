@@ -51,6 +51,11 @@
             margin-top: 20px;
             color: #007BFF;
         }
+        .counter {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -65,9 +70,12 @@
     <button onclick="rollDice()">주사위 굴리기</button>
     <button onclick="resetDice()">지우기</button>
     <div id="result" class="result"></div>
+    <div id="counter" class="counter"></div>
 </div>
 
 <script>
+    let rollCounter = 0;
+
     function updateDiceConfiguration() {
         const diceContainer = document.getElementById('diceContainer');
         diceContainer.innerHTML = '';
@@ -105,12 +113,16 @@
         });
 
         document.getElementById('result').textContent = `결과: ${results.join(', ')}`;
+        rollCounter++;
+        document.getElementById('counter').textContent = `Roll Count: ${rollCounter}`;
     }
 
     function resetDice() {
         document.getElementById('numDice').value = 1;
         document.getElementById('diceContainer').innerHTML = '';
         document.getElementById('result').textContent = '';
+        document.getElementById('counter').textContent = '';
+        rollCounter = 0;
     }
 
     // Initialize the dice configuration
